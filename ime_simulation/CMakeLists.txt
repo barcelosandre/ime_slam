@@ -9,7 +9,6 @@ find_package(catkin REQUIRED)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
-
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
 ## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
@@ -18,7 +17,6 @@ find_package(catkin REQUIRED)
 #######################################
 ## Declare ROS messages and services ##
 #######################################
-
 ## Generate messages in the 'msg' folder
 # add_message_files(
 #   FILES
@@ -32,7 +30,6 @@ find_package(catkin REQUIRED)
 #   Service1.srv
 #   Service2.srv
 # )
-
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
