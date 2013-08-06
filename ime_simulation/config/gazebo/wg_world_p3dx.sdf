@@ -1,0 +1,561 @@
+<sdf version='1.4'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0.000000 0.000000 10.000000 0.000000 0.000000 0.000000</pose>
+      <diffuse>0.800000 0.800000 0.800000 1.000000</diffuse>
+      <specular>0.200000 0.200000 0.200000 1.000000</specular>
+      <attenuation>
+        <range>1000.000000</range>
+        <constant>0.900000</constant>
+        <linear>0.010000</linear>
+        <quadratic>0.001000</quadratic>
+      </attenuation>
+      <direction>0.500000 0.100000 -0.900000</direction>
+    </light>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0.000000 0.000000 1.000000</normal>
+              <size>100.000000 100.000000</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100.000000</mu>
+                <mu2>50.000000</mu2>
+              </ode>
+            </friction>
+            <bounce/>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0.000000 0.000000 1.000000</normal>
+              <size>100.000000 100.000000</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+    </model>
+    <physics type='ode'>
+      <max_step_size>0.001000</max_step_size>
+      <real_time_factor>1.000000</real_time_factor>
+      <real_time_update_rate>1000.000000</real_time_update_rate>
+      <gravity>0.000000 0.000000 -9.800000</gravity>
+      <max_contacts>20</max_contacts>
+    </physics>
+    <scene>
+      <ambient>0.400000 0.400000 0.400000 1.000000</ambient>
+      <background>0.700000 0.700000 0.700000 1.000000</background>
+      <shadows>1</shadows>
+    </scene>
+    <model name='willowgarage'>
+      <static>1</static>
+      <pose>-13.475400 -4.000000 0.000000 0.000000 0.000000 0.000000</pose>
+      <link name='walls'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://willowgarage/meshes/willowgarage_collision.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://willowgarage/meshes/willowgarage_visual.dae</uri>
+            </mesh>
+          </geometry>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+    </model>
+    <model name='pioneer3dx'>
+      <link name='chassis'>
+        <pose>0.000000 0.000000 0.160000 0.000000 0.000000 0.000000</pose>
+        <inertial>
+          <mass>15.000000</mass>
+          <inertia>
+            <ixx>1.000000</ixx>
+            <ixy>0.000000</ixy>
+            <ixz>0.000000</ixz>
+            <iyy>1.000000</iyy>
+            <iyz>0.000000</iyz>
+            <izz>1.000000</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.445000 0.277000 0.170000</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <collision name='castor_collision'>
+          <pose>-0.200000 0.000000 -0.120000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <sphere>
+              <radius>0.040000</radius>
+            </sphere>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.000000</mu>
+                <mu2>0.000000</mu2>
+                <slip1>1.000000</slip1>
+                <slip2>1.000000</slip2>
+              </ode>
+            </friction>
+            <bounce/>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose>0.000000 0.000000 0.040000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <uri>model://pioneer3dx/meshes/chassis.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='castor_visual'>
+          <pose>-0.200000 0.000000 -0.120000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <sphere>
+              <radius>0.040000</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/FlatBlack</name>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <link name='right_wheel'>
+        <pose>0.100000 -0.170000 0.110000 -0.000000 1.570700 1.570700</pose>
+        <inertial>
+          <mass>0.100000</mass>
+          <inertia>
+            <ixx>1.000000</ixx>
+            <ixy>0.000000</ixy>
+            <ixz>0.000000</ixz>
+            <iyy>1.000000</iyy>
+            <iyz>0.000000</iyz>
+            <izz>1.000000</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.110000</radius>
+              <length>0.050000</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100000.000000</mu>
+                <mu2>100000.000000</mu2>
+                <slip1>0.000000</slip1>
+                <slip2>0.000000</slip2>
+              </ode>
+            </friction>
+            <bounce/>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.110000</radius>
+              <length>0.050000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/FlatBlack</name>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <link name='left_wheel'>
+        <pose>0.100000 0.170000 0.110000 -0.000000 1.570700 1.570700</pose>
+        <inertial>
+          <mass>0.500000</mass>
+          <inertia>
+            <ixx>1.000000</ixx>
+            <ixy>0.000000</ixy>
+            <ixz>0.000000</ixz>
+            <iyy>1.000000</iyy>
+            <iyz>0.000000</iyz>
+            <izz>1.000000</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.110000</radius>
+              <length>0.050000</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100000.000000</mu>
+                <mu2>100000.000000</mu2>
+                <slip1>0.000000</slip1>
+                <slip2>0.000000</slip2>
+              </ode>
+            </friction>
+            <bounce/>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.110000</radius>
+              <length>0.050000</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/FlatBlack</name>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='left_wheel_hinge' type='revolute'>
+        <pose>0.000000 0.000000 -0.030000 0.000000 0.000000 0.000000</pose>
+        <child>left_wheel</child>
+        <parent>chassis</parent>
+        <axis>
+          <xyz>0.000000 1.000000 0.000000</xyz>
+          <limit>
+            <lower>-10000000000000000.000000</lower>
+            <upper>10000000000000000.000000</upper>
+          </limit>
+        </axis>
+      </joint>
+      <joint name='right_wheel_hinge' type='revolute'>
+        <pose>0.000000 0.000000 0.030000 0.000000 0.000000 0.000000</pose>
+        <child>right_wheel</child>
+        <parent>chassis</parent>
+        <axis>
+          <xyz>0.000000 1.000000 0.000000</xyz>
+          <limit>
+            <lower>-10000000000000000.000000</lower>
+            <upper>10000000000000000.000000</upper>
+          </limit>
+        </axis>
+      </joint>
+      <link name='kinect_with_lib::link'>
+        <inertial>
+          <mass>0.100000</mass>
+          <inertia>
+            <ixx>1.000000</ixx>
+            <ixy>0.000000</ixy>
+            <ixz>0.000000</ixz>
+            <iyy>1.000000</iyy>
+            <iyz>0.000000</iyz>
+            <izz>1.000000</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.073000 0.276000 0.072000</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://kinect_with_lib/meshes/kinect.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <sensor name='camera' type='depth'>
+          <camera name='__default__'>
+            <horizontal_fov>1.047198</horizontal_fov>
+            <image>
+              <width>640</width>
+              <height>480</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.030000</near>
+              <far>8.000000</far>
+            </clip>
+          </camera>
+          <plugin name='camera' filename='libgazebo_ros_openni_kinect.so'>
+            <distortionK1>0</distortionK1>
+            <distortionK2>0</distortionK2>
+            <distortionK3>0</distortionK3>
+            <distortionT1>0</distortionT1>
+            <distortionT2>0</distortionT2>
+            <Cy>0.00000001</Cy>
+            <Cx>0.00000001</Cx>
+            <CxPrime>0.00000001</CxPrime>
+            <focalLength>554.255971</focalLength>
+            <hackBaseline>0.00000001</hackBaseline>
+            <pointCloudCutoff>0.001</pointCloudCutoff>
+            <frameName>Stereo_Camera</frameName>
+            <depthImageCameraInfoTopicName>/camera/depth/imageCameraInfo</depthImageCameraInfoTopicName>
+            <imageTopicName>/camera/rgb/image</imageTopicName>
+            <depthImageTopicName>/camera/depth/image</depthImageTopicName>
+            <pointCloudTopicName>/camera/depth/pointCloud</pointCloudTopicName>
+            <updateRate>20.0</updateRate>
+            <cameraName>camera</cameraName>
+            <always_on>1</always_on>
+            <update_rate>20</update_rate>
+            <visualize>1</visualize>
+          </plugin>
+        </sensor>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <pose>0.200000 0.000000 0.388000 0.000000 0.000000 0.000000</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='kinect_joint' type='revolute'>
+        <child>kinect_with_lib::link</child>
+        <parent>chassis</parent>
+        <axis>
+          <xyz>0.000000 0.000000 1.000000</xyz>
+          <limit>
+            <upper>0.000000</upper>
+            <lower>0.000000</lower>
+          </limit>
+        </axis>
+      </joint>
+      <link name='hokuyo_with_lib::link'>
+        <inertial>
+          <mass>0.100000</mass>
+          <inertia>
+            <ixx>1.000000</ixx>
+            <ixy>0.000000</ixy>
+            <ixz>0.000000</ixz>
+            <iyy>1.000000</iyy>
+            <iyz>0.000000</iyz>
+            <izz>1.000000</izz>
+          </inertia>
+        </inertial>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://hokuyo_with_lib/meshes/hokuyo.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision-base'>
+          <pose>0.000000 0.000000 -0.014500 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.050000 0.050000 0.041000</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <collision name='collision-top'>
+          <pose>0.000000 0.000000 0.020500 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.021000</radius>
+              <length>0.029000</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <sensor name='laser' type='ray'>
+          <pose>0.010000 0.000000 0.017500 0.000000 0.000000 0.000000</pose>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>640</samples>
+                <resolution>1.000000</resolution>
+                <min_angle>-2.268890</min_angle>
+                <max_angle>2.268899</max_angle>
+              </horizontal>
+            </scan>
+            <range>
+              <min>0.080000</min>
+              <max>10.000000</max>
+              <resolution>0.010000</resolution>
+            </range>
+          </ray>
+          <plugin name='laser' filename='libgazebo_ros_laser.so'>
+            <alwaysOn>1</alwaysOn>
+            <updateRate>20</updateRate>
+            <gaussianNoise>0.0</gaussianNoise>
+            <hokuyoMinIntensity>101.000000</hokuyoMinIntensity>
+            <topicName>laser/scan</topicName>
+            <frameName>Hokuyo</frameName>
+          </plugin>
+        </sensor>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <pose>0.200000 0.000000 0.300000 0.000000 0.000000 0.000000</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='hokuyo_joint' type='revolute'>
+        <child>hokuyo_with_lib::link</child>
+        <parent>chassis</parent>
+        <axis>
+          <xyz>0.000000 0.000000 1.000000</xyz>
+          <limit>
+            <upper>0.000000</upper>
+            <lower>0.000000</lower>
+          </limit>
+        </axis>
+      </joint>
+      <plugin name='diff_drive' filename='libgazebo_ros_diff_drive.so'>
+        <leftJoint>left_wheel_hinge</leftJoint>
+        <rightJoint>right_wheel_hinge</rightJoint>
+        <wheelSeparation>0.340000</wheelSeparation>
+        <wheelDiameter>0.150000</wheelDiameter>
+        <torque>5.000000</torque>
+        <commandTopic>/pioneer3dx_gazebo/cmd_vel</commandTopic>
+        <odometryTopic>/pioneer3dx_gazebo/odom</odometryTopic>
+        <odometryFrame>/pioneer3dx_gazebo/odomFrame</odometryFrame>
+        <robotBaseFrame>base_footprint</robotBaseFrame>
+        <updateRate>100.000000</updateRate>
+        <robotNamespace>Pioneer3DX</robotNamespace>
+      </plugin>
+      <pose>-2.458860 -6.000000 0.000000 0.000000 0.000000 0.000000</pose>
+      <static>0</static>
+    </model>
+    <state world_name='default'>
+      <sim_time>0 0</sim_time>
+      <real_time>0 153551</real_time>
+      <wall_time>1373803088 322579548</wall_time>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>-1.956930 -22.215900 5.924450 0.000000 0.339643 1.392190</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+  </world>
+</sdf>
