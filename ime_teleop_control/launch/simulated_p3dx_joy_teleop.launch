@@ -1,11 +1,8 @@
 <launch>
 
-	<include file="$(find ime_simulation)/launch/simple_simulation.launch" />
-
+	<!-- Joystick Drivers -->
 	<node pkg="joy" type="joy_node" name="IME_SLAM_Joy_Driver" />
-	
 	<node pkg="ime_teleop_control" type="joy_p3dx_cmd_vel" name="IME_SLAM_Teleop_Node"> 
-	
 	<remap from="/pioneer3dx/cmd_vel"      to="/pioneer3dx_gazebo/cmd_vel" />
 	</node>
 	

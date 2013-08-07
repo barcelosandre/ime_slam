@@ -1,0 +1,12 @@
+<launch>
+
+	<!-- Simulated World -->
+	<include file="$(find ime_simulation)/launch/simple_simulation.launch" />
+
+	<!-- Vision Processing -->
+	<include file="$(find ime_vision)/launch/simulated_p3dx_kinect_vision.launch" />
+
+	<!-- Teleop Node -->
+	<include file="$(find ime_teleop_control)/launch/simulated_p3dx_joy_teleop.launch" />
+	
+</launch>

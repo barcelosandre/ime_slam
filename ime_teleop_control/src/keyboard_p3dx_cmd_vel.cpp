@@ -34,7 +34,7 @@ double max_turn = 60.0*M_PI/180.0; // rad/second
       cmd.linear.x = 0;
       cmd.angular.z = 0;
 
-      drive_pub_ = n_.advertise<geometry_msgs::Twist>("/pioneer3dx_gazebo/cmd_vel", 100);
+      drive_pub_ = n_.advertise<geometry_msgs::Twist>("/pioneer3dx/cmd_vel", 0);
 
       ros::NodeHandle n_private("~");
     }
@@ -68,8 +68,9 @@ double max_turn = 60.0*M_PI/180.0; // rad/second
 
   void TeleopRoboCVKeyboard::keyboardLoop()
   {
-    char c;
-   bool dirty=false;
+    unsigned char c;
+    int r;
+    bool dirty=false;
 
     // get the console in raw mode
     tcgetattr(kfd, &cooked);
@@ -87,43 +88,47 @@ double max_turn = 60.0*M_PI/180.0; // rad/second
 
     for(;;)
     {
+
       // get the next event from the keyboard
       if(read(kfd, &c, 1) < 0)
       {
         perror("read():");
         exit(-1);
       }
-
       switch(c)
       {
         // Walking
       case KEYCODE_W:
-    puts("throttle");
-    cmd.linear.x = 1;
-        dirty = true;
-        break;
+//    	  puts("throttle");
+    	  cmd.linear.x = 0.4;
+    	  dirty = true;
+      break;
+
       case KEYCODE_S:
-    puts("brake");
-    cmd.linear.x = 0;
-        dirty = true;
-        break;
+//    	  puts("reverse");
+    	  cmd.linear.x = -0.4;
+    	  dirty = true;
+      break;
+
       case KEYCODE_A:
-    puts("turn left");
-    cmd.angular.z = cmd.angular.z - 0.1;
-        dirty = true;
-        break;
+//    	  puts("turn left");
+    	  cmd.angular.z = 0.4;
+    	  dirty = true;
+      break;
+
       case KEYCODE_D:
-    puts("turn right");
-    cmd.angular.z = cmd.angular.z + 0.1;
-        dirty = true;
-        break;
+//    	  puts("turn right");
+    	  cmd.angular.z = -0.4;
+    	  dirty = true;
+      break;
       }
 
+     drive_pub_.publish(cmd);
+     sleep(1);   ///Ridículo, mas eu não quero perder tempo! (Desculpa aí Thiago, mas a visão tá sinistra!)
+     cmd.linear.x = 0;
+     cmd.angular.z = 0;
+     drive_pub_.publish(cmd);
 
-      if (dirty == true)
-      {
-        drive_pub_.publish(cmd);
-      }
 
     }
   }

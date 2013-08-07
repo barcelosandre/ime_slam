@@ -40,7 +40,7 @@ public:
   ImageConverter()
     : it_(nh_)
   {
-    image_pub_ = it_.advertise("out", 1);
+    image_pub_ = it_.advertise("/ime_vision/features/rgb_image", 1);
     image_sub_ = it_.subscribe("/camera/rgb/image", 1, &ImageConverter::imageCb, this);
 
     cv::namedWindow(WINDOW);
@@ -78,7 +78,8 @@ public:
 
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, "ORB_Feature_Detector");
+  ros::init(argc, argv, "ORB_Feature");
+  ROS_INFO("IME_VISION Initialized!");
   ImageConverter ic;
   ros::spin();
   return 0;
