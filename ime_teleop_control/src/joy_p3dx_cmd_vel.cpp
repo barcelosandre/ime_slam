@@ -36,7 +36,7 @@ TeleopP3DX::TeleopP3DX():
   nh_.param("scale_angular", a_scale_, a_scale_);
   nh_.param("scale_linear", l_scale_, l_scale_);
 
-  vel_pub_ = nh_.advertise<geometry_msgs::Twist>("/pioneer3dx_gazebo/cmd_vel", 1);
+  vel_pub_ = nh_.advertise<geometry_msgs::Twist>("/pioneer3dx/cmd_vel", 1);
 
   joy_sub_ = nh_.subscribe<sensor_msgs::Joy>("joy", 10, &TeleopP3DX::joyCallback, this);
 }
@@ -44,7 +44,7 @@ TeleopP3DX::TeleopP3DX():
 void TeleopP3DX::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 {
   geometry_msgs::Twist vel;
-  vel.angular.z = joy->axes[angular_]*(-1);
+  vel.angular.z = joy->axes[angular_];
   vel.linear.x = joy->axes[linear_];
   vel_pub_.publish(vel);
 }

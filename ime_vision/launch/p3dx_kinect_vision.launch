@@ -1,0 +1,7 @@
+<launch>
+
+	<node pkg="ime_vision" type="ORBVisualLand" name="IME_SLAM_ORB_Feature_Node">
+		<remap from="image" to="/camera/rgb/image"/>
+	</node>
+
+</launch>

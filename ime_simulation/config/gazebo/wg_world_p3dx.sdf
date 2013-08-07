@@ -539,7 +539,7 @@
         <commandTopic>/pioneer3dx_gazebo/cmd_vel</commandTopic>
         <odometryTopic>/pioneer3dx_gazebo/odom</odometryTopic>
         <odometryFrame>/pioneer3dx_gazebo/odomFrame</odometryFrame>
-        <robotBaseFrame>base_footprint</robotBaseFrame>
+        <robotBaseFrame>/pioneer3dx_gazebo/base_footprint</robotBaseFrame>
         <updateRate>100.000000</updateRate>
         <robotNamespace>Pioneer3DX</robotNamespace>
       </plugin>

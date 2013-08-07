@@ -1,6 +1,6 @@
 <launch>
 
-	<node pkg="gazebo_ros" type="gazebo" name="gazebo" 
+	<node pkg="gazebo_ros" type="gazebo" name="Gazebo_Node" 
 	      args="$(find ime_simulation)/config/gazebo/wg_world_p3dx.sdf"/>
 
 <!--	
@@ -13,11 +13,11 @@
 	</node>
 -->
 	
-	<node pkg="image_view" type="image_view" name="Pioneer3DX_rgb_image">
+	<node pkg="image_view" type="image_view" name="Camera_rgb_image">
 		<remap from="image" to="/camera/rgb/image"/>
 	</node>
 
-	<node pkg="image_view" type="image_view" name="Pioneer3DX_depth_image">
+	<node pkg="image_view" type="image_view" name="Camera_depth_image">
 	  <remap from="image" to="/camera/depth/image"/>
 	</node>
 
