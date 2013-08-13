@@ -398,7 +398,7 @@
             <pointCloudCutoff>0.001</pointCloudCutoff>
             <frameName>Stereo_Camera</frameName>
             <depthImageCameraInfoTopicName>/camera/depth/imageCameraInfo</depthImageCameraInfoTopicName>
-            <imageTopicName>/camera/rgb/image</imageTopicName>
+            <imageTopicName>/camera/rgb/image_color</imageTopicName>
             <depthImageTopicName>/camera/depth/image</depthImageTopicName>
             <pointCloudTopicName>/camera/depth/pointCloud</pointCloudTopicName>
             <updateRate>20.0</updateRate>

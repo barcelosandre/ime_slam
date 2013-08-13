@@ -17,14 +17,18 @@
 
 namespace enc = sensor_msgs::image_encodings;
 
-static const char WINDOW[] = "ORBVisualLand";
+static const char WINDOW1[] = "RGB Image ORB Feature";
+static const char WINDOW2[] = "Depth Image ORB Feature";
 
-class ImageConverter
+class Ime_Vision_Core
 {
   ros::NodeHandle nh_;
   image_transport::ImageTransport it_;
-  image_transport::Subscriber image_sub_;
-  image_transport::Publisher image_pub_;
+  image_transport::Subscriber rgb_image_sub_;
+  image_transport::Publisher rgb_image_pub_;
+  image_transport::Subscriber depth_image_sub_;
+  image_transport::Publisher depth_image_pub_;
+
 
   cv::OrbFeatureDetector orbDetector;
   std::vector<cv::KeyPoint> keypoints;
@@ -34,24 +38,27 @@ class ImageConverter
   cv::OrbDescriptorExtractor orbExtractor;
   cv::Mat descriptors;
 
-
-
 public:
-  ImageConverter()
+  Ime_Vision_Core()
     : it_(nh_)
   {
-    image_pub_ = it_.advertise("/ime_vision/features/rgb_image", 1);
-    image_sub_ = it_.subscribe("/camera/rgb/image", 1, &ImageConverter::imageCb, this);
+    rgb_image_pub_ = it_.advertise("/ime_vision/features/rgb_image", 1);
+    rgb_image_sub_ = it_.subscribe("/camera/rgb/image_color", 1, &Ime_Vision_Core::rgbImageCallBack, this);
 
-    cv::namedWindow(WINDOW);
+    depth_image_pub_ = it_.advertise("/ime_vision/features/depth_image", 1);
+    depth_image_sub_ = it_.subscribe("/camera/depth/image", 1, &Ime_Vision_Core::depthImageCallBack, this);
+
+    //cv::namedWindow(WINDOW1);
+    //cv::namedWindow(WINDOW2);
   }
 
-  ~ImageConverter()
+  ~Ime_Vision_Core()
   {
-    cv::destroyWindow(WINDOW);
+	cv::destroyWindow(WINDOW1);
+    cv::destroyWindow(WINDOW2);
   }
 
-  void imageCb(const sensor_msgs::ImageConstPtr& msg)
+  void rgbImageCallBack(const sensor_msgs::ImageConstPtr& msg)
   {
     cv_bridge::CvImagePtr cv_ptr;
     try
@@ -69,18 +76,54 @@ public:
 
     cv::drawKeypoints(cv_ptr->image, this->keypoints, this->output);
 
-    cv::imshow(WINDOW, this->output);
-    cv::waitKey(3);
+    cv::imshow(WINDOW1, this->output);
+    cv::waitKey(1);
 
-    image_pub_.publish(cv_ptr->toImageMsg());
+    rgb_image_pub_.publish(cv_ptr->toImageMsg());
   }
+
+	void depthImageCallBack(const sensor_msgs::ImageConstPtr & msg) {
+		cv_bridge::CvImagePtr cv_ptr_depth;
+		cv::Mat depth_frame;
+
+		try {
+			cv_ptr_depth = cv_bridge::toCvCopy(msg, enc::TYPE_32FC1);
+		} catch (cv_bridge::Exception & e) {
+			ROS_ERROR("cv_bridge exception: %s", e.what());
+			return;
+		}
+
+    	depth_frame = cv_ptr_depth->image;
+
+    	//ROS_INFO("%f\n", depth_frame.at<float>(240,320));
+
+    	/*for(int i=50; i<depth_frame.rows; i++){
+    	   for(int j=50; j<depth_frame.cols; j++){
+    		   //depth_frame.data[depth_frame.step[0]*i + depth_frame.step[1]* j + 0] = 250;
+    		   //depth_frame.data[depth_frame.step[0]*i + depth_frame.step[1]* j + 1] = 250;
+    		   //depth_frame.data[depth_frame.step[0]*i + depth_frame.step[1]* j + 2] = 250;
+
+    		   printf("%u\n", depth_frame.data[depth_frame.step[0]*i + depth_frame.step[1]* j + 0]);
+
+    		   depth_frame.data[depth_frame.step[0]*i + depth_frame.step[1]* j + 1];
+    		   depth_frame.data[depth_frame.step[0]*i + depth_frame.step[1]* j + 2];
+    	    }
+    	}*/
+
+		cv::imshow(WINDOW2, depth_frame);
+		cv::waitKey(1);
+
+		depth_image_pub_.publish(cv_ptr_depth->toImageMsg());
+}
+
+
 };
 
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "ORB_Feature");
   ROS_INFO("IME_VISION Initialized!");
-  ImageConverter ic;
+  Ime_Vision_Core ic;
   ros::spin();
   return 0;
 }

@@ -87,9 +87,11 @@ target_link_libraries(ORBVisualLand
 target_link_libraries(SURFVisualLand 
    ${catkin_LIBRARIES}
 )
+
 target_link_libraries(3DReconstructor 
    ${catkin_LIBRARIES}
 )
+
 #############
 ## Install ##
 #############

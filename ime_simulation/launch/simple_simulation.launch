@@ -14,7 +14,7 @@
 -->
 	
 	<node pkg="image_view" type="image_view" name="Camera_rgb_image">
-		<remap from="image" to="/camera/rgb/image"/>
+		<remap from="image" to="/camera/rgb/image_color"/>
 	</node>
 
 	<node pkg="image_view" type="image_view" name="Camera_depth_image">
