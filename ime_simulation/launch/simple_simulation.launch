@@ -1,5 +1,7 @@
 <launch>
 
+	<!-- <node name="killall" pkg="ime_simulation" type="killall_gzserver" /> -->
+
 	<node pkg="gazebo_ros" type="gazebo" name="Gazebo_Node" 
 	      args="$(find ime_simulation)/config/gazebo/wg_world_p3dx.sdf"/>
 

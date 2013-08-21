@@ -1,0 +1,8 @@
+<launch>
+
+	<!-- Joystick Drivers -->
+	<node pkg="ime_teleop_control" type="keyboard_p3dx_cmd_vel" name="IME_SLAM_Teleop_Node"> 
+	<remap from="/pioneer3dx/cmd_vel"      to="/pioneer3dx_gazebo/cmd_vel" />
+	</node>
+	
+</launch>

@@ -1,12 +1,12 @@
 <launch>
 
 	<!-- Vision Processing -->
-	<include file="$(find ime_vision)/launch/p3dx_kinect_vision.launch" />
+	<include file="$(find ime_vision)/launch/ime_vision.launch" />
 
 	<!-- Teleop Node JOY -->
-	<include file="$(find ime_teleop_control)/launch/p3dx_joy_teleop.launch" />
+	<include file="$(find ime_teleop_control)/launch/ime_joy_teleop.launch" />
 	
 	<!-- Teleop Node KEYBOARD -->
-	<! -- <include file="$(find ime_teleop_control)/launch/p3dx_keyboard_teleop.launch" /> -->
+	<!-- <include file="$(find ime_teleop_control)/launch/ime_keyboard_teleop.launch" /> -->
 	
 </launch>

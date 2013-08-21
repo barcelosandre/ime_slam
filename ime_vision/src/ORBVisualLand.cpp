@@ -32,6 +32,17 @@ class Ime_Vision_Core
 
   cv::OrbFeatureDetector orbDetector;
   std::vector<cv::KeyPoint> keypoints;
+  /*
+   ORB parameters
+	WTA_K = 2
+	edgeThreshold = 31
+	firstLevel = 0
+	nFeatures = 500
+	nLevels = 8
+	patchSize = 31
+	scaleFactor = 1.20000004768
+	scoreType = 0
+   */
 
   cv::Mat output;
 
@@ -48,6 +59,7 @@ public:
     depth_image_pub_ = it_.advertise("/ime_vision/features/depth_image", 1);
     depth_image_sub_ = it_.subscribe("/camera/depth/image", 1, &Ime_Vision_Core::depthImageCallBack, this);
 
+    orbDetector.setInt("nFeatures",1);
     //cv::namedWindow(WINDOW1);
     //cv::namedWindow(WINDOW2);
   }
@@ -74,12 +86,17 @@ public:
     orbDetector.detect(cv_ptr->image, this->keypoints);
     orbExtractor.compute(cv_ptr->image, this->keypoints, this->descriptors);
 
+    if (keypoints.size() > 0)
+    		ROS_INFO("x: %f,y: %f",keypoints[keypoints.size()-1].pt.x,keypoints[keypoints.size()-1].pt.y);
+
     cv::drawKeypoints(cv_ptr->image, this->keypoints, this->output);
 
     cv::imshow(WINDOW1, this->output);
     cv::waitKey(1);
 
     rgb_image_pub_.publish(cv_ptr->toImageMsg());
+
+    keypoints.clear();
   }
 
 	void depthImageCallBack(const sensor_msgs::ImageConstPtr & msg) {

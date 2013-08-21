@@ -66,13 +66,14 @@ catkin_package(
 
 ## Declare a cpp executable
  #add_executable(pioneer_basic_move src/pioneer_basic_move.cpp)
+  #add_executable(kill_gzserver src/kill_gzserver.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-# add_dependencies(ime_simulation_node ime_simulation_generate_messages_cpp)
+#add_dependencies(kill_gzserver ime_simulation_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(ime_simulation_node
+# target_link_libraries(kill_gzserver
 #   ${catkin_LIBRARIES}
 # )
 
@@ -85,10 +86,13 @@ catkin_package(
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-# install(PROGRAMS
-#   scripts/my_python_script
+#install(PROGRAMS scripts/kill_gzserver
 #   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+#)
+
+#install(DIRECTORY scripts
+#  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+#)
 
 ## Mark executables and/or libraries for installation
 # install(TARGETS ime_simulation ime_simulation_node

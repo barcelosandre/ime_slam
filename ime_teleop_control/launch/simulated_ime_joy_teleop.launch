@@ -1,0 +1,12 @@
+<launch>
+
+	<!-- Joysticks Drivers -->
+	<node pkg="joy" type="joy_node" name="IME_SLAM_Joy_Driver">
+	<param name="dev"	type="str"	value="/dev/input/js0"/>
+	</node>
+	
+	<node pkg="ime_teleop_control" type="joy_p3dx_cmd_vel" name="IME_SLAM_Teleop_Node"> 
+	<remap from="/pioneer3dx/cmd_vel"      to="/pioneer3dx_gazebo/cmd_vel" />
+	</node>
+	
+</launch>
