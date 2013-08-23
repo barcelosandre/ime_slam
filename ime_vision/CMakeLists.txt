@@ -74,7 +74,6 @@ include_directories(
 ## Declare a cpp executable
 add_executable(SURFVisualLand src/SURFVisualLand.cpp)
 add_executable(ORBVisualLand src/ORBVisualLand.cpp)
-add_executable(3DReconstructor src/3DReconstructor.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
@@ -85,10 +84,6 @@ target_link_libraries(ORBVisualLand
    ${catkin_LIBRARIES}
 )
 target_link_libraries(SURFVisualLand 
-   ${catkin_LIBRARIES}
-)
-
-target_link_libraries(3DReconstructor 
    ${catkin_LIBRARIES}
 )
 

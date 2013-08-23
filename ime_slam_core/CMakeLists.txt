@@ -4,7 +4,7 @@ project(ime_slam_core)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS roscpp rospy)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -51,7 +51,7 @@ find_package(catkin REQUIRED)
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES ime_slam_core
-#  CATKIN_DEPENDS ime_slam
+#  CATKIN_DEPENDS roscpp rospy
 #  DEPENDS system_lib
 )
 
@@ -72,16 +72,16 @@ include_directories(
 # )
 
 ## Declare a cpp executable
-# add_executable(ime_slam_core_node src/ime_slam_core_node.cpp)
+ add_executable(ime_fastslam src/ime_fastslam_core.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
 # add_dependencies(ime_slam_core_node ime_slam_core_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(ime_slam_core_node
-#   ${catkin_LIBRARIES}
-# )
+ target_link_libraries(ime_fastslam
+   ${catkin_LIBRARIES}
+ )
 
 #############
 ## Install ##

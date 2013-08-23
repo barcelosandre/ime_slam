@@ -59,7 +59,7 @@ public:
     depth_image_pub_ = it_.advertise("/ime_vision/features/depth_image", 1);
     depth_image_sub_ = it_.subscribe("/camera/depth/image", 1, &Ime_Vision_Core::depthImageCallBack, this);
 
-    orbDetector.setInt("nFeatures",1);
+    //orbDetector.setInt("nFeatures",);
     //cv::namedWindow(WINDOW1);
     //cv::namedWindow(WINDOW2);
   }
