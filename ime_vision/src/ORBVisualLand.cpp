@@ -13,7 +13,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/features2d/features2d.hpp>
 #include <opencv2/flann/flann.hpp>
-#include <opencv2/nonfree/features2d.hpp>
+//#include <opencv2/nonfree/features2d.hpp>
 
 namespace enc = sensor_msgs::image_encodings;
 
@@ -53,13 +53,14 @@ public:
   Ime_Vision_Core()
     : it_(nh_)
   {
-    rgb_image_pub_ = it_.advertise("/ime_vision/features/rgb_image", 1);
+	rgb_image_pub_ = it_.advertise("/ime_vision/features/rgb_image", 1);
     rgb_image_sub_ = it_.subscribe("/camera/rgb/image_color", 1, &Ime_Vision_Core::rgbImageCallBack, this);
 
     depth_image_pub_ = it_.advertise("/ime_vision/features/depth_image", 1);
     depth_image_sub_ = it_.subscribe("/camera/depth/image", 1, &Ime_Vision_Core::depthImageCallBack, this);
 
-    //orbDetector.setInt("nFeatures",);
+    orbDetector.setInt("nFeatures",1);
+    orbDetector.setInt("edgeThreshold",20);
     //cv::namedWindow(WINDOW1);
     //cv::namedWindow(WINDOW2);
   }
@@ -83,11 +84,19 @@ public:
       return;
     }
 
-    orbDetector.detect(cv_ptr->image, this->keypoints);
-    orbExtractor.compute(cv_ptr->image, this->keypoints, this->descriptors);
+    //orbDetector.detect(cv_ptr->image, this->keypoints);
+    //orbExtractor.compute(cv_ptr->image, this->keypoints, this->descriptors);
+
+    //nfeatures, scaleFactor, nlevels, edgeThreshold, firstLevel, WTA_K, scoreType, patchSize
+    cv::ORB orb(300,1.2f,8,31,0,3,0,31);
+    orb(cv_ptr->image,cv::noArray(),this->keypoints,this->descriptors);
 
     if (keypoints.size() > 0)
+    {
     		ROS_INFO("x: %f,y: %f",keypoints[keypoints.size()-1].pt.x,keypoints[keypoints.size()-1].pt.y);
+    		ROS_INFO("%d,%d",descriptors.rows, descriptors.row(0).cols);
+    		ROS_INFO("%d",orb.descriptorSize());
+    }
 
     cv::drawKeypoints(cv_ptr->image, this->keypoints, this->output);
 

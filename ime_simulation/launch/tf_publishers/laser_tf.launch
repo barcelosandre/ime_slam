@@ -1,0 +1,8 @@
+<launch>
+
+	<node pkg="tf" type="static_transform_publisher" 
+	   name="ime_slam_laserscan_tf" 
+	   args="0.2 0 0.30 0 0 0 /pioneer3dx_gazebo/base_frame /laser/laser_frame 100" 
+	/>
+
+</launch>
