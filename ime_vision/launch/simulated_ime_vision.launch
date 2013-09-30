@@ -1,7 +1,0 @@
-<launch>
-
-	<!-- Image Processing Node -->
-	<node pkg="ime_vision" type="ORBVisualLand" name="IME_SLAM_ORB_Feature_Node">
-	</node>
-
-</launch>
