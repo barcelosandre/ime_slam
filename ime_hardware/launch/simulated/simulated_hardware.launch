@@ -1,0 +1,63 @@
+<launch>
+
+	<rosparam param="use_sim_time">true</rosparam>
+	
+	<!-- Visualization tool -->
+	<include file="$(find ime_hardware)/launch/simulated/apps/simulated_rviz.launch" />
+
+	<!-- Simulated Enviroment -->
+	<node pkg="gazebo_ros" type="gazebo" name="gazebo_simulator" 
+	      args="$(find ime_hardware)/config/gazebo/roboime_world.sdf"/>
+	 <!-- args="$(find ime_simulation)/config/gazebo/wg_world_p3dx.sdf"/> -->
+	<!-- /home/barcelosandre/catkin_ws/src/ime_slam/ime_simulation/config/gazebo/roboime_world.sdf -->
+
+
+	<!-- Fake Laser with camera -->
+	<include file="$(find ime_hardware)/launch/simulated/apps/simulated_kinect_laser.launch" />
+
+	<!-- Publish TFs to Laser and Camera to Odometry -->	
+	<!-- args="x y z y p r frame1 frame2 hz" -->
+	<include file="$(find ime_hardware)/launch/simulated/tf_publishers/camera_depth_tf.launch" />
+	<include file="$(find ime_hardware)/launch/simulated/tf_publishers/camera_tf.launch" />
+	<include file="$(find ime_hardware)/launch/simulated/tf_publishers/laser_tf.launch" />
+
+
+<!--
+	<node pkg="tf" type="static_transform_publisher" 
+	   name="ime_slam_camera_tf" 
+	   args="0.2 0 0.388 0 0.5 0 /pioneer3dx_gazebo/base_frame /camera/camera_frame 100" />
+
+	<node pkg="tf" type="static_transform_publisher" 
+	   name="ime_slam_laserscan_tf" 
+	   args="0.2 0 0.30 0 0 0 /pioneer3dx_gazebo/base_frame /laser/laser_frame 100" />
+-->	
+	<!-- red - x 
+	     green - y 
+	     blue -z -->
+
+	<!--<node pkg="tf" type="static_transform_publisher" 
+	   name="ime_slam_laserscan_tf" 
+	   args="0.2 0 0.35 0 0 0 /pioneer3dx_gazebo/base_footprint Hokuyo 33" /> -->
+	
+
+<!--	
+	  <node pkg="rqt_robot_steering" type="rqt_robot_steering" name="Pioneer3DX_rqt_teleop">
+	  <param name="default_topic" type="str" value="/pioneer3dx_gazebo/cmd_vel" />
+	  <param name="default_vx_max" type="double" value="0.8" />
+	  <param name="default_vx_min" type="double" value="-0.8" />
+	  <param name="default_vw_max" type="double" value="1.5" />
+	  <param name="default_vw_min" type="double" value="-1.5" />
+	</node>
+-->
+
+ <!--	
+	<node pkg="image_view" type="image_view" name="Camera_rgb_image">
+		<remap from="image" to="/camera/rgb/image_color"/>
+	</node>
+	
+	<node pkg="image_view" type="image_view" name="Camera_depth_image">
+	  <remap from="image" to="/camera/depth/image"/>
+	</node>
+-->
+
+</launch>

@@ -1,0 +1,7 @@
+<launch>
+
+	<!-- Visualization tool -->
+	<node pkg="rviz" type="rviz" name="ime_slam_rviz" 
+	      args="-d $(find ime_hardware)/config/rviz/simulated/settings.rviz"/>
+
+</launch>

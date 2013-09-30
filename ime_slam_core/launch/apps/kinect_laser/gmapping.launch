@@ -1,0 +1,9 @@
+<launch>
+	<node pkg="gmapping" type="slam_gmapping" name="ime_slam_coreslam" output="screen">	
+	  <rosparam file="$(find ime_slam_core)/config/gmapping/gmapping.yaml" command="load" />
+	  
+	  <remap from="scan"          to="/camera/depth_registered/scan"/>
+	  <remap from="map"           to="/ime_slam/map"/>
+	  <remap from="map_metadata"  to="/ime_slam/map_metadata"/>
+	</node>
+</launch>

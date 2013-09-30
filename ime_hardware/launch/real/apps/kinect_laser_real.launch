@@ -1,0 +1,9 @@
+<launch>
+	
+<!-- Fake Laser with camera -->
+	<node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="ime_slam_camera_laserscan">
+		<remap from="image"     to="/camera/depth_registered/image" />
+		<remap from="scan"      to="/camera/depth_registered/scan" />
+		<remap from="camera_depth_frame"      to="/camera/camera_depth_frame" />
+	</node>
+</launch>

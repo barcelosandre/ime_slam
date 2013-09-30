@@ -48,8 +48,8 @@ odom_alpha2:      0.07    # 0.2      rotational    drift caused by translation
 odom_alpha3:      0.07    # 0.2, 0.8 translational drift caused by translation
 odom_alpha4:      0.07    # 0.2      translational drift caused by rotation
 odom_alpha5:      0.07    # 0.2, 0.1 Holonomic drive systems only
-odom_frame_id:    /pioneer3dx_gazebo/odomFrame
-base_frame_id:    /pioneer3dx_gazebo/base_footprint
+odom_frame_id:    /pioneer3dx/odom_frame
+base_frame_id:    /pioneer3dx/base_frame
 global_frame_id:  /ime_slam/map
 
 

@@ -1,0 +1,22 @@
+<launch>
+
+  <group  ns="ime_slam">
+	  <!-- http://www.ros.org/wiki/map_server -->
+	  <!-- Use demo_navigation_gmapping.launch to make a map and save it to disk -->
+<!--	  <node name="map_server" pkg="map_server" type="map_server" args="$(env HOME)/maps/map.yaml">  
+  	  <param name="frame_id" type="str" value="/ime_slam/map"  />
+	  </node>
+-->
+	  <node pkg="amcl" type="amcl" name="ime_slam_amcl" >
+	    <rosparam file="$(find ime_slam_core)/config/amcl/kinect_laser/amcl.yaml" command="load"  />
+	    <remap from="scan" to="laserscan" />
+	  </node>
+	
+	  <!-- Distribute pose array across free space --> 
+	  <!--  <node pkg="rosservice" type="rosservice" name="global_loc" args="call -!-wait /global_localization"/>-->
+	
+	      <!-- Temporary workaround for Groovy's roservice -->
+	      <node pkg="ime_slam_core" type="amcl_init" name="ime_slam_amcl_init"/>
+	</group>
+	
+</launch>

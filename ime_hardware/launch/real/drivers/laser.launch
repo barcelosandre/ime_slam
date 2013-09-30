@@ -1,0 +1,16 @@
+<launch>
+
+  <node pkg="sicktoolbox_wrapper" type="sicklms" name="ime_slam_laser_node">
+	<param name="port" value="/dev/ttyUSB0"/>
+	<param name="baud" value="38400"/>
+<!--	<param name="connect_delay" value="45"/>
+	<param name="inverted" value="false"/>
+	<param name="angle" value="0"/>
+	<param name="resolution" value="0.0"/>
+	<param name="units" value="mm"/> -->
+	<param name="frame_id" value="/laser/laser_frame"/>
+	
+	<remap from="scan" to="/laser/scan"/>
+  </node>
+
+</launch>

@@ -1,0 +1,24 @@
+<launch>
+
+	<!-- Hardware -->
+	<include file="$(find ime_hardware)/launch/simulated/simulated_hardware.launch" />
+
+	<!-- Teleop Node JOY -->
+	<include file="$(find ime_teleop_control)/launch/ime_joy_teleop.launch" />
+
+	<!-- Vision Processing -->
+	<include file="$(find ime_vision)/launch/ime_vision.launch" />
+
+	<!-- Launch Applications for kinect_laser scan -->
+<!--	<include file="$(find ime_slam_core)/launch/apps/kinect_laser/gmapping.launch" /> -->
+<!--	<include file="$(find ime_slam_core)/launch/apps/kinect_laser/navigation.launch" /> -->
+
+	<!-- Launch Applications for lidar scan  -->
+	<include file="$(find ime_slam_core)/launch/apps/lidar/gmapping.launch" />
+<!--	<include file="$(find ime_slam_core)/launch/apps/lidar/navigation.launch" /> -->
+
+
+	<!-- COMMENTED Teleop Node KEYBOARD -->
+	<!-- <include file="$(find ime_teleop_control)/launch/simulated_ime_keyboard_teleop.launch" /> -->
+	
+</launch>

@@ -1,0 +1,20 @@
+<launch>
+
+<!-- P3DX Platform Driver -->
+   <node pkg="ROSARIA" type="RosAria" name="ime_slam_p3dx_rosaria">
+
+     <param name="port"       type="str" value="/dev/ttyUSB1"/>
+     <param name="~tf_prefix" type="str" value="pioneer3dx"  />
+     <param name="odom" type="str" value="odom_frame"  />
+     <param name="base_link" type="str" value="base_frame"  />
+     <param name="bumpers_frame" type="str" value="bumpers_frame"  />
+     <param name="sonar_frame" type="str" value="sonar_frame"  />
+
+     <remap from="~pose"         to="/pioneer3dx/odom" />
+     <remap from="~sonar"        to="/pioneer3dx/sonar" />
+     <remap from="~cmd_vel"      to="/pioneer3dx/cmd_vel" />
+     <remap from="~bumper_state" to="/pioneer3dx/bumper_state" />
+   
+   </node>
+
+</launch>

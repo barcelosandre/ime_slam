@@ -1,0 +1,19 @@
+<launch>
+	<node pkg="move_base" type="move_base" name="ime_slam_move_base">
+		<rosparam file="$(find ime_slam_core)/config/move_base/kinect_laser/move_base.yaml" command="load"/>
+		<rosparam file="$(find ime_slam_core)/config/move_base/kinect_laser/costmap_common.yaml" command="load" ns="global_costmap" />
+		<rosparam file="$(find ime_slam_core)/config/move_base/kinect_laser/costmap_common.yaml" command="load" ns="local_costmap" />
+		<rosparam file="$(find ime_slam_core)/config/move_base/kinect_laser/costmap_global.yaml" command="load"  />
+		<rosparam file="$(find ime_slam_core)/config/move_base/kinect_laser/costmap_local.yaml" command="load"/>
+		
+		<remap from="cmd_vel"               to="/pioneer3dx/cmd_vel"  />
+		<remap from="move_base/cancel"      to="/pioneer3dx/move_base/cancel"   />
+		<remap from="move_base/feedback"    to="/pioneer3dx/move_base/feedback" />
+		<remap from="move_base/goal"        to="/pioneer3dx/move_base/goal" />
+		<remap from="move_base/result"      to="/pioneer3dx/move_base/result" />
+		<remap from="move_base/status"      to="/pioneer3dx/move_base/status" />
+		<remap from="move_base_simple/goal" to="/pioneer3dx/move_base_simple/goal" />
+		
+	</node>
+
+</launch>

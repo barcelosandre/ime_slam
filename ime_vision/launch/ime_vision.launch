@@ -1,14 +1,9 @@
 <launch>
-	<!-- Camera Driver with registration true-->
-	<include file="$(find openni_launch)/launch/openni.launch">
-		<arg name="depth_registration"      default="true" />
-		<arg name="rgb_camera_info_url"   value="file://$(find ime_vision)/config/kinect_calibration/rgb.yaml"/>
-  		<arg name="depth_camera_info_url" value="file://$(find ime_vision)/config/kinect_calibration/depth.yaml"/>
- 	</include>
 
 	<!-- Image Processing Node -->
 	<node pkg="ime_vision" type="ORBVisualLand" name="IME_SLAM_ORB_Feature_Node">
-		<remap from="/camera/rgb/image_color" to="/camera/rgb/image_color"/>
-		<remap from="/camera/depth/image" to="/camera/depth_registered/image"/>
 	</node>
+
+<!-- The fake laser for the simulation is in ime_simulation.launch -->
+
 </launch>

@@ -45,9 +45,57 @@ TeleopP3DX::TeleopP3DX():
 void TeleopP3DX::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 {
   geometry_msgs::Twist vel;
-  vel.angular.z = joy->axes[angular_];
-  vel.linear.x = joy->axes[linear_];
-  vel_pub_.publish(vel);
+
+  if(joy->axes[angular_] != 0 || joy->axes[linear_] != 0)
+    {
+  	  vel.angular.z = 0.7*(joy->axes[angular_]);
+  	  vel.linear.x = 0.7*(joy->axes[linear_]);
+  	  vel_pub_.publish(vel);
+    }
+    else if(joy->buttons[0] == true)
+    {
+      ROS_INFO("1 meter front step!");
+       vel.angular.z = 0;
+      //1 meter step in 2 seconds
+    	vel.linear.x = 0.5;
+    	vel_pub_.publish(vel);
+    	sleep(2);
+    	vel.linear.x = 0;
+    	vel_pub_.publish(vel);
+    }
+    else if(joy->buttons[2] == true)
+    {
+      ROS_INFO("1 meter back step!");
+       vel.angular.z = 0;
+      //1 meter step in 2 seconds
+    	vel.linear.x = -0.5;
+    	vel_pub_.publish(vel);
+    	sleep(2);
+    	vel.linear.x = 0;
+    	vel_pub_.publish(vel);
+    }
+    else if(joy->buttons[1] == true)
+    {
+		ROS_INFO("90 degrees right step!");
+		vel.linear.x = 0;
+		//90 degrees step in 2 seconds
+		vel.angular.z = -0.7854;
+		vel_pub_.publish(vel);
+		sleep(2);
+		vel.angular.z = 0;
+		vel_pub_.publish(vel);
+    }
+    else if(joy->buttons[3] == true)
+    {
+		ROS_INFO("90 degrees left step!");
+		vel.linear.x = 0;
+		//90 degrees step in 2 seconds
+		vel.angular.z = 0.7854;
+		vel_pub_.publish(vel);
+		sleep(2);
+		vel.angular.z = 0;
+		vel_pub_.publish(vel);
+    }
 }
 
 int main(int argc, char** argv)

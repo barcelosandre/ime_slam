@@ -1,0 +1,7 @@
+<launch>
+<!-- args="x y z y p r frame1 frame2 hz" -->
+<node pkg="tf" type="static_transform_publisher" 
+	   name="ime_slam_camera_tf" 
+	   args="0.2 0 0.388 0 0 0 /pioneer3dx/base_frame camera_frame 100" />
+<!-- args="0.2 0 0.388 -1.56 0 -1.58 /pioneer3dx_gazebo/base_frame /camera/camera_frame 100" -->
+</launch>

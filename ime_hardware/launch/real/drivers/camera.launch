@@ -1,0 +1,10 @@
+<launch>
+
+	<!-- Camera Driver with registration true-->
+	<include file="$(find openni_launch)/launch/openni.launch">
+		<arg name="depth_registration"      default="true" />
+		<arg name="rgb_camera_info_url"   value="file://$(find ime_hardware)/config/kinect_calibration/rgb.yaml"/>
+  		<arg name="depth_camera_info_url" value="file://$(find ime_hardware)/config/kinect_calibration/depth.yaml"/>
+ 	</include>
+
+</launch>

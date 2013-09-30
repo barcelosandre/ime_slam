@@ -1,0 +1,25 @@
+<launch>
+
+<!-- Vision Hardware -->
+	<include file="$(find ime_hardware)/launch/real/drivers/camera.launch" />
+
+<!-- Camera (Fake)Laserscan Hardware --> 
+	<include file="$(find ime_hardware)/launch/real/apps/kinect_laser_real.launch" />
+
+<!-- Laserscan Hardware -->
+	<include file="$(find ime_hardware)/launch/real/drivers/laser.launch" />
+
+<!-- P3DX Mobile Platform -->
+	<include file="$(find ime_hardware)/launch/real/drivers/p3dx_platform.launch" />
+
+<!-- Statics TF publishers -->
+	<!-- RGB Camera -->
+	<include file="$(find ime_hardware)/launch/real/tf_publishers/camera_tf.launch" />
+	<!-- Laser -->
+	<include file="$(find ime_hardware)/launch/real/tf_publishers/laser_tf.launch" />
+
+<!-- Visualization Tools -->
+	<include file="$(find ime_hardware)/launch/real/apps/rviz_real.launch" />
+	<include file="$(find ime_hardware)/launch/real/apps/image_view.launch" />
+
+</launch>
